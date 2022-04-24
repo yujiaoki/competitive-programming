@@ -30,7 +30,7 @@ typedef vector<bool> vb;
 typedef vector<double> vd;
 typedef vector<string> vs;
 typedef vector<ll> vll;
-typedef vector<pair<int, int>> vpii;
+typedef vector<pair<ll, ll>> vpii;
 typedef vector<pair<ll, ll>> vpll;
 typedef vector<vi> vvi;
 typedef vector<vvi> vvvi;
@@ -40,8 +40,43 @@ typedef vector<vll> vvll;
 typedef map<int, int> mii;
 typedef set<int> si;
 //---------------------------------------------------------------------------------------------------
-
+struct edge {ll to;ll time;ll bai;};
+vector<vector<edge>> G;
 int main(void){
     // Your code here!
-    
+    ll n,m,x,y; cin >> n >> m >> x  >> y;
+    x--;y--;
+    G.resize(n);
+    rep(i,m) {
+        ll a,b,t,k; cin >> a >> b >> t >> k; a--;b--;
+        edge s = {b,t,k}, l = {a,t,k};
+        G[a].push_back(s);
+        G[b].push_back(l);
+    }
+    priority_queue<P , vector<P> , greater<P>> que;
+    vll d(n,1e17);
+    d[x] = 0;
+    que.push({0,x});
+
+    while(!que.empty()) {
+        P p = que.top(); que.pop();
+        ll v = p.second;
+        if (d[v] < p.first) continue;
+        rep(i, G[v].size()) {
+            edge e = G[v][i];
+            if (d[v] % e.bai == 0) {
+                 if (d[e.to] > d[v] + e.time) {
+                    d[e.to] = d[v] + e.time;
+                    que.push({d[e.to],e.to});
+                 }
+            } else {
+                if (d[e.to] > d[v] + e.bai - d[v] % e.bai + e.time) {
+                    d[e.to] = d[v] + e.bai - d[v] % e.bai + e.time;
+                    que.push({d[e.to],e.to});
+                }
+            }
+        }
+    }
+    if (d[y] == 1e17) cout << -1 << endl;
+    else cout << d[y] << endl;
 }

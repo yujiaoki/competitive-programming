@@ -43,5 +43,41 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    string s; cin >> s;
+    int n = s.size();
+    bool check = true;
+    int ans = 0;
+    while(check) {
+        bool ch = false;
+        int mi_len = n;
+        int mi_ind = -1;
+        char now;
+        // どこが一番短く回数稼げるかを探索。
+        rep(i,n-2) {
+            now = s[i];
+            if (s[i] == s[i+1] && s[i+1] != s[i+2]) {
+                ch = true; // 見つけられたら trueにしとく
+                int pre_ind = i;
+                int cnt = 0;
+                while(now != s[i+2] && i + 2 < n) {
+                    cnt++;
+                    i++;
+                }
+                if (cnt < mi_len && cnt != 0) {
+                    mi_len = cnt;
+                    mi_ind = pre_ind;
+                }
+            }
+        }
+        if (ch) {
+            check = true;
+            ans += mi_len;
+            // 書き換える〜
+            for (int i = mi_ind ; i + 2 < n; i++) {
+                if (s[i+1] != s[i+2]) s[i+2] = s[i+1];
+                else break;
+            }
+        } else check = false;
+    }
+    cout << ans << endl;
 }

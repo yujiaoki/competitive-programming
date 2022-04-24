@@ -43,5 +43,7 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    int m,h; cin >> m >> h;
+    if (h % m == 0) cout << "Yes" << endl;
+    else cout << "No" << endl;
 }

@@ -43,5 +43,18 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    int n; cin >> n;
+    vi a(n),b(n);
+    rep(i,n) cin >> a[i] >> b[i];
+    int res = INF;
+    rep(i,n) rep(j,n) {
+        if (i == j) {
+            int now = a[i] + b[j];
+            res = min(res,now);
+            continue;
+        }
+        int now = max(a[i],b[j]);
+        res = min(res,now);
+    }
+    cout << res << endl;
 }

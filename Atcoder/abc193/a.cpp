@@ -43,5 +43,6 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    double a,b; cin >> a >> b;
+    cout << setprecision(10) << (a-b)/a*100 << endl;
 }

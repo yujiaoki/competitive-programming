@@ -43,5 +43,19 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    ll k; cin >> k;
+    ll ans = 0;
+    // FOR(a,1,1000) {
+    //     FOR(b,1,1000) {
+    //         if (a*b > k) continue;
+    //         ans += k/(a*b);
+    //     }
+    // }
+    FOR(a,1,200000) {
+        int f = k/a;
+        FOR(b,1,f) {
+            ans += f/b;
+        }
+    }
+    cout << ans << endl;
 }

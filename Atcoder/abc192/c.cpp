@@ -43,5 +43,18 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    int n; cin >> n;
+    int k; cin >> k;
+    vll a(k+1,0);
+    a[0] = n;
+    FOR(i,1,k) {
+        string s = to_string(a[i-1]);
+        string s1 = s;
+        string s2 = s;
+        Rort(s1);
+        Sort(s2);
+        int m = stoi(s1) - stoi(s2);
+        a[i] = m;
+    }
+    cout << a[k] << endl;
 }

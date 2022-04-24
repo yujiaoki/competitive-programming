@@ -43,5 +43,10 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    int n; cin >> n;
+    double res = 0;
+    rep(i,n-1) {
+        res += 1.0 * n/(n-(i+1));
+    }
+    cout << setprecision(10) << res << endl;
 }

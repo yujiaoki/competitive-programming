@@ -40,8 +40,28 @@ typedef vector<vll> vvll;
 typedef map<int, int> mii;
 typedef set<int> si;
 //---------------------------------------------------------------------------------------------------
+int dp[200005][2] = {0};
 
 int main(void){
     // Your code here!
-    
+    int n; cin >> n;
+    string s,x; cin >> s >> x;
+    int m = 0;
+    rep(i,n) {
+        if (x[i] == 'A') {
+            if (abs(3-(m*10 + (s[i]- '0')) % 7) <= abs(3-(m*10 ) % 7)) {
+                m = (m*10 + (s[i]- '0')) % 7;
+            } else {
+                m  = (m*10) % 7;
+            }
+        } else {
+            if ((m*10 + (s[i]- '0')) % 7 <= (m*10  % 7)) {
+                m = (m*10 + (s[i]- '0')) % 7;
+            } else {
+                m  = (m*10) % 7;
+            }
+        }
+    }
+    if (m != 0) cout << "Aoki" << endl;
+    else cout << "Takahashi" << endl;
 }

@@ -43,5 +43,11 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    int x;cin >> x;
+    FOR(i,1,100) {
+        if ((x + i) % 100 == 0) {
+            cout << i << endl;
+            return 0;
+        }
+    }
 }

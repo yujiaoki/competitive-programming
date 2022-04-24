@@ -43,5 +43,19 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    int n; cin >> n;
+    vll a(n);
+    rep(i,n) cin >> a[i];
+    vll su(n,0);
+    for (int i = n -2; i>= 0; i--) {
+        su[i] = su[i+1] + a[i+1];
+    }
+    ll res = 0;
+    rep(i,n) {
+        res += (n-1)*a[i]*a[i];
+    }
+    rep(i,n-1) {
+        res -= 2*su[i]*a[i];
+    }
+    cout << res << endl;
 }

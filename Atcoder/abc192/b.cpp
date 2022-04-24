@@ -43,5 +43,22 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    string s; cin >> s;
+    int n = s.size();
+    bool res = true;
+    rep(i,n) {
+        if (i % 2 == 0) {
+            if (isupper(s[i])) {
+                res = false;
+                break;
+            }
+        } else {
+            if (!isupper(s[i])) {
+                res = false;
+                break;
+            }
+        }
+    }
+    if (res) cout << "Yes" << endl;
+    else cout << "No" << endl;
 }

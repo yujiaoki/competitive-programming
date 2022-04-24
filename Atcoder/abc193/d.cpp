@@ -43,5 +43,35 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    ll k; cin >> k;
+    string s; cin >> s;
+    string t; cin >> t;
+    vll taka(10,0),ao(10,0),total(10,0);
+    rep(i,4) taka[s[i] - '0']++;
+    rep(i,4) ao[t[i] - '0']++; 
+    FOR(i,1,9) {
+        total[i] = taka[i] + ao[i];
+    }
+    ll taka_win = 0, ao_win = 0;
+    FOR(i,1,9) {
+        FOR(j,1,9) {
+            vll taka_now = taka, ao_now = ao;
+            taka_now[i]++;
+            ao_now[j]++;
+            ll taka_sum = 0 ,ao_sum = 0;
+            // sum の計算
+            FOR(l,1,9) {
+                taka_sum += l*pow(10,taka_now[l]);
+                ao_sum += l*pow(10,ao_now[l]);
+            }
+            if (i == j ){
+                if (taka_sum > ao_sum) taka_win += max((ll)0,(k - total[i])*(k-total[j]-1)/2);
+                else ao_win += max((ll)0,(k - total[i])*(k-total[j]-1)/2);
+            } else {
+                if (taka_sum > ao_sum) taka_win += max((ll)0,(k - total[i])*(k-total[j]));
+                else ao_win += max((ll)0,(k - total[i])*(k-total[j]));
+            }
+        }
+    }
+    cout << setprecision(10) << (long double)taka_win/(taka_win+ao_win)<< endl;
 }

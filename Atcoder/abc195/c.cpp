@@ -43,5 +43,15 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    ll n; cin >> n;
+    ll ans = 0;
+    for (ll i = 0;; i++) {
+        if (n >= pow(10,3*(i+1))) {
+            ans += i*(pow(10,3*(i+1))-1 - pow(10,3*(i)) + 1);
+        } else {
+            ans += i*(n - pow(10,3*(i)) + 1);
+            break;
+        }
+    }
+    cout << ans << endl;
 }

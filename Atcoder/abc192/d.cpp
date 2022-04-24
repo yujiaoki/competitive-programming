@@ -43,5 +43,33 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    string x; cin >> x;
+    int n = x.size();
+    ll m; cin >> m;
+    string x1 = x;
+    Rort(x1);
+    reverse(all(x));
+    int max = (int)(x1[0]-'0');
+    int count = 0;
+    for (ll num = max + 1;; num++) {
+        ll now = 0;
+        bool res = true;
+        rep(i,n) {
+            if (x[i] != '0' && (ll)(x[i]-'0')*pow(num,i) > 1e18) {
+                res = false;
+                break;
+            }
+            if (x[i] != '0' && x[i] != '1' && i >= 18) {
+                res = false;
+                break;
+            }
+            now += (ll)(x[i]-'0') * pow(num,i);
+        }
+        if (now > m) {
+            res = false;
+            break;
+        }
+        if (res) count++;
+    }
+    cout << count << endl;
 }

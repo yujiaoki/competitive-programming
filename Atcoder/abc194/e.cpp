@@ -40,8 +40,38 @@ typedef vector<vll> vvll;
 typedef map<int, int> mii;
 typedef set<int> si;
 //---------------------------------------------------------------------------------------------------
+int N, M, A[2010101];
+int cnt[2010101];
 
+bool check(int limit) {
+    rep(i,N) cnt[i] = 0;
+    int placed = 0;
+    rep(i,M) {
+        if (cnt[A[i]] == 0 && A[i] <= limit) placed++;
+        cnt[A[i]]++;
+    }
+    if (placed <= limit) return true;
+    FOR(i,M,N-1) {
+        if (cnt[A[i-M]] == 1 && A[i-M] <= limit) placed--;
+        cnt[A[i-M]]--;
+        if (cnt[A[i]] == 0 && A[i] <= limit) placed++;
+        cnt[A[i]]++;
+
+        if (placed <= limit) return true;
+    }
+
+    return false;
+}
 int main(void){
     // Your code here!
-    
+    cin >> N >> M;
+    rep(i,N) cin >> A[i];
+
+    int ng = -1,ok = N;
+    while(ok - ng > 1) {
+        int md = (ok + ng)/2;
+        if (check(md)) ok = md;
+        else ng = md;
+    }
+    cout << ok << endl;
 }

@@ -40,8 +40,26 @@ typedef vector<vll> vvll;
 typedef map<int, int> mii;
 typedef set<int> si;
 //---------------------------------------------------------------------------------------------------
+int a,b,c; 
+int d[100][100] = {{1,1,1,1},{2,4,8,6},{3,9,7,1},{4,6,4,6},{5,5,5,5},{6,6,6,6},{7,9,3,1},{8,4,2,6},{9,1,9,1}};
 
 int main(void){
     // Your code here!
-    
+    cin >> a >> b >> c;
+    // ll l = d[(b+9)%10][(c+3)%4];
+    int l ;
+    b %= 4;
+    if (b == 1 ||b == 5 ||b == 9 ) {
+        l = 1;
+    } else if (b == 2 || b == 6) {
+        if (c > 1) l = 0;
+        else l = 2;
+    } else if (b == 4|| b == 8) {
+        l = 0;
+    } else if (b == 3 || b == 7) {
+        if (c % 2  == 0) l = 1;
+        else l = 3;
+    }
+    int ans = d[(a+9)%10][(l+3)%4];
+    cout << ans << endl;
 }

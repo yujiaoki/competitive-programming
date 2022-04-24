@@ -43,5 +43,37 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    int n,m,q; cin >> n >> m >> q;
+    vll w(n),v(n);
+    rep(i,n) cin >> w[i] >> v[i];
+    vpll pp(n);
+    rep(i,n) {
+        pp[i] = {v[i],w[i]};
+    }
+    Rort(pp);
+    vll x(m);
+    rep(i,m) cin >> x[i];
+    while(q--) {
+        int l,r; cin >> l >> r;
+        l--;r--;
+        vi box;
+        rep(i,m) {
+            if (l <= i && i <= r) continue;
+            box.push_back(x[i]);
+        }
+        int siz = box.size();
+        Sort(box);
+        vb check(siz,false); // 既に使ってるかどうかをチェックする配列
+        ll ans = 0;
+        rep(i,n) {
+            rep(j,siz) {
+                if (check[j] == false && box[j] >= pp[i].second) {
+                    ans += pp[i].first;
+                    check[j] = true;
+                    break;
+                }
+            }
+        }
+        cout << ans << endl;
+    }
 }

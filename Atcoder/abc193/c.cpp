@@ -43,5 +43,17 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    ll n; cin >> n;
+    ll ans =0;
+    set<ll> st;
+    FOR(i,2,100000) {
+        FOR(j,2,1000) {
+            if ((ll)pow(i,j) > 1e10) break;
+            if (pow(i,j) <= n && st.find(pow(i,j)) == st.end()) {
+                st.insert(pow(i,j));
+                ans++;
+            }
+        }
+    }
+    cout << n - ans << endl;
 }

@@ -43,5 +43,16 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    ll a,b,w; cin >> a >> b >> w;
+    w*=1000;
+    bool res = false;
+    FOR(i,1,10000000) {
+        if (a*i <= w && w <= b*i) res = true;
+    }
+    if (!res) {
+        cout << "UNSATISFIABLE" << endl;
+        return 0;
+    }
+    cout << (w+b-1)/b << " ";
+    cout << w/a << endl;
 }

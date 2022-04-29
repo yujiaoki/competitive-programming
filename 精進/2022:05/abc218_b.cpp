@@ -72,6 +72,9 @@ typedef set<int> si;
 int main(void)
 {
     // Your code here!
-    vi P(26);
-    rep(i, 26)
+    rep(i, 26) {
+        int p; cin >> p; p--;
+        cout << char('a' + p);
+    }
+    
 }

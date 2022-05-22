@@ -41,7 +41,29 @@ typedef map<int, int> mii;
 typedef set<int> si;
 //---------------------------------------------------------------------------------------------------
 
+int dp[302][302][302];
+
 int main(void){
-    // Your code here!
-    
+    // Your code here! dp臭がすんごい
+    int n; cin >> n;
+    int x,y; cin >> x >> y;
+    vi a(n),b(n);
+    rep(i,n) cin >> a[i] >> b[i];
+    rep(i,n+1) rep(j,x+1) rep(k,y+1) dp[i][j][k] = 500;
+    rep(i,n+1) dp[i][0][0] = 0;
+    rep(i,n) {
+        rep(j,x+1) {
+            int target_x = min(j + a[i], x);
+            rep(k,y+1) {
+                        dp[i+1][j][k] = min(dp[i+1][j][k],dp[i][j][k]);
+                        int target_y = min(k + b[i], y);
+                        dp[i+1][target_x][target_y] = min(dp[i+1][target_x][target_y],dp[i][j][k]+ 1);
+                    }
+            }
+    }
+    if (dp[n][x][y] == 500) {
+        cout << -1 << endl;
+    } else {
+        cout << dp[n][x][y] << endl;
+    }
 }

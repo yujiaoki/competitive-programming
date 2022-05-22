@@ -43,5 +43,24 @@ typedef set<int> si;
 
 int main(void){
     // Your code here!
-    
+    string x; cin >> x;
+    int n; cin >> n;
+    // vs S(n);
+    // rep(i,n) cin >> S[i];
+    vector<pair<string, string>> L(n);
+    rep(i,n) {
+        string s; cin >> s;
+        L[i].second = s;
+        rep(j, s.size()) {
+            rep(k,26) {
+                if (s[j] == x[k]) {
+                    L[i].first += k;
+                }
+            }
+        }
+    }
+    Sort(L);
+    rep(i,L.size()) {
+        cout << L[i].second << endl;
+    }
 }
